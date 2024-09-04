@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .top{
+        background-color: red;
+        padding:10px;
+    }
+    .mid{
+        background-color: green;
+        padding: 10px;
+    }
+    .inner{
+        background-color: bisque;
+        padding: 10px;
+    }
+</style>
+<body>
+    <div>
+        <h3>Event bubbling is a concept of DOM. When we have some nested elements with same Event
+            like onclick onchange etc and we perform that event at the topmost element or the deeply
+            nested element than that event will also performed for its all upper elements
+        </h3>
+        <h2>to prevent event bubbling we use event.stopPropagation()</h2>
+    </div>
+    <hr>
+    <div class="top" onclick="topD()">TOP DIV
+        <div class="mid" onclick="midD()">MID DIV
+            <div class="inner" onclick="innerD()">INNER DIV
+    </div></div></div>
+</body>
+<script>
+    function topD(){
+        alert("top div");
+    }
+    function midD(){
+        event.stopPropagation();
+        alert('mid div')
+    }
+    function innerD(){
+        event.stopPropagation();
+        alert('inner div')
+    }
+</script>
+</html>

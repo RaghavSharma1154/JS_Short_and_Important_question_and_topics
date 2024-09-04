@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        display: inline-block;
+        height:100px;
+        width:200px;
+        border:2px solid black;
+    }
+    .red{
+        background-color: red;
+    }
+    .green{
+        background-color: green;
+    }
+    .blue{
+        background-color: blue;
+    }
+    #otherDiv{
+        display: inline-block;
+    }
+    #main{
+        height:150px;
+        width:900px;
+        /* border: 2px solid red; */
+        padding:30px 10px;
+    }
+</style>
+<body>
+    <div id="main">
+        <div class="red box" contenteditable>Div1</div>
+        <div id="otherDiv" contenteditable>
+            <div class="box" contenteditable>Inner Div</div>
+        </div>
+        <div class="green box" contenteditable>Div2</div>
+        <div class="blue box" contenteditable>Div3</div>
+    </div>
+    <button onclick="deleteDiv()">DeleteDiv</button>
+    <button onclick="deleteInnerDiv()">DeleteInnerDiv</button>
+    <button onclick="updateAttribute()">updateAttribute</button>
+    <button onclick="updateDivValue()">updateDivValue</button>
+</body>
+<script>
+    let observer = new MutationObserver((data)=>{
+        console.log(data);
+    })
+    observer.observe(main,{
+        childList:true,
+        subtree:true,
+        attributes:true,
+        characterDataOldValue:true,
+    })
+    function deleteDiv(){
+        document.getElementById('main').children[0].remove();
+    }
+    function deleteInnerDiv(){
+        document.getElementById('otherDiv').children[0].remove();
+    }
+    function updateAttribute(){
+        document.getElementById('main').children[0].className = "hello";
+    }
+    function updateDivValue(){
+        document.getElementById('main').children[0].textContent = "changed";
+    }
+</script>
+</html>

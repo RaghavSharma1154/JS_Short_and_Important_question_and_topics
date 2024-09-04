@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .red{
+        color : red;
+    }
+</style>
+<body>
+    <h2 class="red">Shadow Dom is a way to encapsulate and isolate the structure and styles of a web component
+        from the rest of document it allows you to create self contained components with their 
+        own html css and js.
+    </h2>
+    <raghav-tag data="this is a custom tag"></raghav-tag>
+</body>
+<script>
+    customElements.define('raghav-tag',
+    class extends HTMLElement{
+        connectedCallback(){
+            const temp = this.attachShadow({mode:'open'});
+            temp.innerHTML = `<p class='red'>hello ,${this.getAttribute('data')}</p>`;
+        }
+    }
+    )
+</script>
+</html>

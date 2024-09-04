@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Function</title>
+</head>
+<body>
+    <div>
+        <h2>click here to generate ID </h2>
+        <button id="btn" onclick="get()">click here</button>
+        <h2>ID is : <span id="i"></span></h2>
+    </div>
+    <script>
+        let btn = document.getElementById('btn');
+        let dis = document.getElementById("i");
+        function* gen(n){
+            let id = n;
+            while(true){
+                yield Math.ceil(Math.random()*1000);
+            }
+        }
+        let res = gen(1000);
+        function get(){
+            dis.innerText = res.next().value;
+        }
+    </script>
+</body>
+</html>
